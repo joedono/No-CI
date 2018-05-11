@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable, interval } from 'rxjs';
+import { map, takeWhile, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-root',

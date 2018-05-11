@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
 import { FormsModule } from '@angular/forms';
-import { RoundProgressModule } from 'angular-svg-round-progressbar';
 
 @NgModule({
   declarations: [
@@ -12,8 +11,7 @@ import { RoundProgressModule } from 'angular-svg-round-progressbar';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    RoundProgressModule
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
