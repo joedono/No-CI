@@ -1,0 +1,4 @@
+cmd: npm
+args:
+    - run
+    - electron-build
