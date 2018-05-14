@@ -6,7 +6,7 @@
 <div class="row text-center">
   <div class="col form-group">
     <label>Repo Location</label>
-    <input type="file" class="form-control" webkitdirectory />
+    <input type="file" (change)="onRepoSelected($event)" class="form-control" webkitdirectory />
   </div>
 </div>
 <div class="row fixed-bottom nav-buttons">

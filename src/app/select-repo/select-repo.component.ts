@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { GitRepoService } from '../services/git-repo.service';
+
 @Component({
   selector: 'app-select-repo',
   templateUrl: './select-repo.component.html',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectRepoComponent implements OnInit {
 
-  constructor() { }
+  public currentRepoPath: string;
+
+  constructor(
+    private gitRepoService: GitRepoService
+  ) { }
 
   ngOnInit() {
   }
 
+  public onRepoSelected($event) {
+    console.log($event.srcElement.files);
+  }
 }
