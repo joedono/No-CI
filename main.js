@@ -13,7 +13,7 @@ function createWindow () {
   win.loadURL(`file://${__dirname}/dist/No-CI/index.html`);
 
   //// uncomment below to open the DevTools.
-  // win.webContents.openDevTools()
+  win.webContents.openDevTools()
 
   win.on('closed', function () {
     win = null;

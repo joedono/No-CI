@@ -19,6 +19,11 @@ export class SelectRepoComponent implements OnInit {
   }
 
   public onRepoSelected($event) {
-    console.log($event.srcElement.files);
+    console.log($event.srcElement.files[0].path);
+
+    this.currentRepoPath = $event.srcElement.files[0].path;
+    this.gitRepoService.setRepoPath(this.currentRepoPath);
+
+    console.log(this.gitRepoService.getCommits());
   }
 }
