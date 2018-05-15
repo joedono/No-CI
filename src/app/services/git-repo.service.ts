@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { gitlog } from 'gitlog';
+import * as gitlog from 'gitlog';
 
 import { Commit } from '../models/commit';
 
@@ -22,14 +22,19 @@ export class GitRepoService {
 
   constructor() { }
 
-  public setRepoPath(repoPath: string): boolean {
+  public setRepoPath(repoPath: string): void {
+    let localCommits: Commit[];
     this.options.repo = repoPath;
 
     gitlog(this.options, function (error, commits) {
-      this.commits = commits;
+      if(error) {
+        alert(error);
+      } else {
+        localCommits = commits;
+      }
     });
 
-    return true;
+    this.commits = localCommits;
   }
 
   public getCommits(): Commit[] {
