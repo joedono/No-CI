@@ -10,6 +10,8 @@ import { SelectCommitsComponent } from './select-commits/select-commits.componen
 import { FtpConfigComponent } from './ftp-config/ftp-config.component';
 import { UploadComponent } from './upload/upload.component';
 
+import { GitRepoService } from './services/git-repo.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,7 @@ import { UploadComponent } from './upload/upload.component';
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [ ],
+  providers: [ GitRepoService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
