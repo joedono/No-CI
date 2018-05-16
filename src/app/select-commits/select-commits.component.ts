@@ -25,9 +25,4 @@ export class SelectCommitsComponent implements OnInit {
     console.log(this.commits);
   }
 
-  public doStuff() {
-    this.commits = this.gitRepoService.getCommits();
-    console.log(this.commits);
-  }
-
 }

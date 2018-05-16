@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+html, body, .container-fluid, .main-content, .custom-select {
+  height: 100% !important;
+}
+
+html, body, .container-fluid {
+  padding-bottom: 40px !important;
+}
+
 .nav-buttons {
   padding: 5px;
 }

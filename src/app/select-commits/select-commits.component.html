@@ -3,15 +3,13 @@
     <h1>Select Commits</h1>
   </div>
 </div>
-<div class="row">
+<div class="row main-content">
   <div class="col">
     <select class="custom-select" [(ngModel)]="selectedCommits" multiple>
       <option *ngFor="let commit of commits" [ngValue]="commit">
         {{ commit.abbrevHash }} | {{ commit.authorName }} | {{ commit.subject }}
       </option>
     </select>
-
-    <button (click)="doStuff()">Test</button>
   </div>
   <div class="col">
     <select class="custom-select" [(ngModel)]="selectedFiles" multiple>

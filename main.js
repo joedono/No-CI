@@ -4,7 +4,7 @@ let win;
 
 function createWindow () {
   win = new BrowserWindow({
-    width: 600,
+    width: 1070,
     height: 600,
     backgroundColor: '#ffffff',
     icon: `file://${__dirname}/dist/No-CI/assets/logo.png`
