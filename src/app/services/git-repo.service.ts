@@ -3,7 +3,9 @@ import * as gitlog from 'gitlog';
 
 import { Commit } from '../models/commit';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class GitRepoService {
   private currentRepoPath: string;
   private commits: Commit[];

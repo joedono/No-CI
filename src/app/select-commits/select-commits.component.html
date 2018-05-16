@@ -10,6 +10,8 @@
         {{ commit.abbrevHash }} | {{ commit.authorName }} | {{ commit.subject }}
       </option>
     </select>
+
+    <button (click)="doStuff()">Test</button>
   </div>
   <div class="col">
     <select class="custom-select" [(ngModel)]="selectedFiles" multiple>
