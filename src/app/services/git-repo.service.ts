@@ -3,12 +3,13 @@ import * as gitlog from 'gitlog';
 
 import { Commit } from '../models/commit';
 
+var CommitStore: Commit[];
+
 @Injectable({
   providedIn: 'root'
 })
 export class GitRepoService {
   private currentRepoPath: string;
-  private commits: Commit[];
   private options = {
     repo: '',
     number: 20,
@@ -23,21 +24,18 @@ export class GitRepoService {
   constructor() { }
 
   public setRepoPath(repoPath: string): void {
-    let localCommits: Commit[];
     this.options.repo = repoPath;
 
     gitlog(this.options, function (error, commits) {
       if(error) {
         alert(error);
       } else {
-        localCommits = commits;
+        CommitStore = commits;
       }
     });
-
-    this.commits = localCommits;
   }
 
   public getCommits(): Commit[] {
-    return this.commits;
+    return CommitStore;
   }
 }
