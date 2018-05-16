@@ -5,7 +5,7 @@
 </div>
 <div class="row main-content">
   <div class="col">
-    <select class="custom-select" [(ngModel)]="selectedCommits" multiple>
+    <select class="custom-select" [(ngModel)]="selectedCommits" (ngModelChange)="onSelectedCommitChange($event)" multiple>
       <option *ngFor="let commit of commits" [ngValue]="commit">
         {{ commit.abbrevHash }} | {{ commit.authorName }} | {{ commit.subject }}
       </option>
@@ -14,7 +14,7 @@
   <div class="col">
     <select class="custom-select" [(ngModel)]="selectedFiles" multiple>
       <option *ngFor="let file of files" [ngValue]="file">
-        {{ file }}
+        {{ file.status }} - {{ file.fileName }}
       </option>
     </select>
   </div>
@@ -22,6 +22,9 @@
 <div class="row fixed-bottom nav-buttons">
   <div class="col text-left">
     <a href="#/select-repo" class="btn btn-danger">Back</a>
+  </div>
+  <div class="col text-center">
+    <button class="btn btn-default" (click)="doStuff()">Test</button>
   </div>
   <div class="col text-right">
     <a href="#/ftp-config" class="btn btn-success">Next</a>

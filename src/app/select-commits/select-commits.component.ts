@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Commit } from '../models/commit';
+import { CommitFile } from '../models/commit-file';
 import { GitRepoService } from '../services/git-repo.service';
 
 @Component({
@@ -11,10 +12,10 @@ import { GitRepoService } from '../services/git-repo.service';
 export class SelectCommitsComponent implements OnInit {
 
   public commits: Commit[];
-  public files: string[];
+  public files: CommitFile[];
 
   public selectedCommits: Commit[];
-  public selectedFiles: string[];
+  public selectedFiles: CommitFile[];
 
   constructor(
     private gitRepoService: GitRepoService
@@ -22,7 +23,14 @@ export class SelectCommitsComponent implements OnInit {
 
   ngOnInit() {
     this.commits = this.gitRepoService.getCommits();
-    console.log(this.commits);
+  }
+
+  public onSelectedCommitChange($event) {
+    this.files = this.selectedCommits.map()
+  }
+
+  public doStuff() {
+    console.log(this.selectedCommits);
   }
 
 }
