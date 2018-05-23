@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { each as _each } from 'lodash';
 
 import { Commit } from '../models/commit';
 import { CommitFile } from '../models/commit-file';
@@ -26,11 +27,24 @@ export class SelectCommitsComponent implements OnInit {
   }
 
   public onSelectedCommitChange($event) {
-    this.files = this.selectedCommits.map()
+    this.files = [];
+
+    _each(this.selectedCommits, (selectedCommit) => {
+      for(let i in selectedCommit.files) {
+        this.files.push(new CommitFile(selectedCommit.status[i], selectedCommit.files[i]));
+      }
+    });
+  }
+
+  public onNext() {
+    this.gitRepoService.setSelectedFiles(this.selectedFiles);
   }
 
   public doStuff() {
+    console.log(this.commits);
     console.log(this.selectedCommits);
+    console.log(this.files);
+    console.log(this.selectedFiles);
   }
 
 }

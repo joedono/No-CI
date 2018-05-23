@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import * as gitlog from 'gitlog';
 
 import { Commit } from '../models/commit';
+import { CommitFile } from '../models/commit-file';
 
 var CommitStore: Commit[];
+var CommitFileStore: CommitFile[];
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +39,14 @@ export class GitRepoService {
 
   public getCommits(): Commit[] {
     return CommitStore;
+  }
+
+  public setSelectedFiles(selectedFiles: CommitFile[]): void {
+    CommitFileStore = selectedFiles;
+    console.log(CommitFileStore);
+  }
+
+  public getSelectedFiles(): CommitFile[] {
+    return CommitFileStore;
   }
 }
