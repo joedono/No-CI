@@ -40,11 +40,4 @@ export class SelectCommitsComponent implements OnInit {
     this.gitRepoService.setSelectedFiles(this.selectedFiles);
   }
 
-  public doStuff() {
-    console.log(this.commits);
-    console.log(this.selectedCommits);
-    console.log(this.files);
-    console.log(this.selectedFiles);
-  }
-
 }
