@@ -27,11 +27,7 @@ export class FtpConfigComponent implements OnInit {
   }
 
   public testConnection() {
-    console.log(this.host);
-    console.log(this.port);
-    console.log(this.username);
-    console.log(this.password);
-
+    console.log('testing connection');
     this.testSuccessful = this.ftpUploadService.testConnection(this.host, this.port, this.username, this.password);
     this.testResultVisible = true;
   }
