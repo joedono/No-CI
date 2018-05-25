@@ -3,11 +3,34 @@
     <h1>FTP Config</h1>
   </div>
 </div>
+<div class="row main-content">
+  <form>
+    <div class="form-group">
+      <label>Host</label>
+      <input type="url" class="form-control" [(ngModel)]="host">
+    </div>
+    <div class="form-group">
+      <label>Port</label>
+      <input type="number" class="form-control" [(ngModel)]="port">
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" class="form-control" [(ngModel)]="username">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" class="form-control" [(ngModel)]="password">
+    </div>
+  </form>
+</div>
 <div class="row fixed-bottom nav-buttons">
   <div class="col text-left">
     <a href="#/select-commits" class="btn btn-danger">Back</a>
   </div>
+  <div class="col text-center">
+    <button class="btn btn-default" (click)="testConnection()">Test</button>
+  </div>
   <div class="col text-right">
-    <a href="#/upload" class="btn btn-success">Next</a>
+    <a href="#/upload" class="btn btn-success" (click)="onNext()">Next</a>
   </div>
 </div>
