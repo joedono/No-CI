@@ -10,7 +10,7 @@ function createWindow () {
     icon: `file://${__dirname}/dist/No-CI/assets/logo.png`
   });
 
-  win.loadURL(`file://${__dirname}/dist/No-CI/index.html`);
+  win.loadURL(`file://${__dirname}/dist/No-CI/index.html#ftp-config`);
 
   //// uncomment below to open the DevTools.
   win.webContents.openDevTools()
