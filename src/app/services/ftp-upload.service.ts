@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as ssh2 from 'ssh2';
+import * as ftp from 'ftp';
 
 import { FtpConfig } from '../models/ftp-config';
 
@@ -23,27 +23,28 @@ export class FtpUploadService {
 
   public testConnection(host: string, port: number, username: string, password: string): boolean {
     console.log('starting connection test');
+    var client = new ftp();
+    client.on('ready', function() {
+      console.log('start of ready')
+      client.list(function(err, list) {
+        console.log('start of list');
+        if (err) console.error(err);
+        console.dir(list);
+        client.end();
+      });
+    });
 
-    var Client = ssh2.Client;
-    var connection = new Client();
-    var connSettings = {
+    client.on('error', function(err) {
+      console.error(err);
+    });
+
+    console.log('connecting');
+    client.connect({
       host: host,
       port: port,
       user: username,
       password: password
-    };
-
-    connection.on('ready', function() {
-      connection.sftp(function(err, sftp) {
-        if (err) console.error(err);
-
-        sftp.readdir('/', function (err, list) {
-          if (err) console.error(err);
-          console.dir(list);
-          connection.end();
-        });
-      });
-    }).connect(connSettings);
+    });
 
     return true;
   }
