@@ -3,4 +3,5 @@ export class FtpConfig {
   Port: number;
   Username: string;
   Password: string;
+  IsStaging: boolean;
 }

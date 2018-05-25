@@ -13,6 +13,7 @@ export class FtpConfigComponent implements OnInit {
   public port: number;
   public username: string;
   public password: string;
+  public isStaging: boolean;
 
   constructor(
     private ftpUploadService: FtpUploadService
@@ -26,7 +27,7 @@ export class FtpConfigComponent implements OnInit {
   }
 
   public onNext() {
-    this.ftpUploadService.storeConnection(this.host, this.port, this.username, this.password);
+    this.ftpUploadService.storeConnection(this.host, this.port, this.username, this.password, this.isStaging);
   }
 
 }

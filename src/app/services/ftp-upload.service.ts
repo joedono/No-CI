@@ -5,6 +5,9 @@ import { FtpConfig } from '../models/ftp-config';
 
 var FtpConfigStore: FtpConfig;
 
+const ProductionFolder = "/public_html/";
+const StagingFolder = "/staging.animeboston.com/";
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,12 +15,13 @@ export class FtpUploadService {
 
   constructor() { }
 
-  public storeConnection(host: string, port: number, username: string, password: string) {
+  public storeConnection(host: string, port: number, username: string, password: string, isStaging: boolean) {
     FtpConfigStore = {
       Host: host,
       Port: port,
       Username: username,
-      Password: password
+      Password: password,
+      IsStaging: isStaging
     };
   }
 
