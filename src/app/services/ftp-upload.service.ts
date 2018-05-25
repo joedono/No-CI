@@ -21,31 +21,30 @@ export class FtpUploadService {
     };
   }
 
-  public testConnection(host: string, port: number, username: string, password: string): boolean {
-    console.log('starting connection test');
+  public testConnection(host: string, port: number, username: string, password: string): void {
     var client = new ftp();
-    client.on('ready', function() {
-      console.log('start of ready')
-      client.list(function(err, list) {
-        console.log('start of list');
-        if (err) console.error(err);
+    client.on('ready', () => {
+      client.list((err, list) => {
+        if (err) alert(err);
+
         console.dir(list);
         client.end();
+
+        alert("Connection Successful");
       });
     });
 
-    client.on('error', function(err) {
-      console.error(err);
+    client.on('error', (err) => {
+      alert(err);
     });
 
-    console.log('connecting');
     client.connect({
       host: host,
       port: port,
       user: username,
-      password: password
+      password: password,
+      secure: true,
+      secureOptions: { rejectUnauthorized: false }
     });
-
-    return true;
   }
 }
