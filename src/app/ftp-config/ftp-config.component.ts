@@ -14,22 +14,15 @@ export class FtpConfigComponent implements OnInit {
   public username: string;
   public password: string;
 
-  public testResultVisible: boolean;
-  public testSuccessful: boolean;
-
   constructor(
     private ftpUploadService: FtpUploadService
   ) { }
 
   ngOnInit() {
-    this.testResultVisible = false;
-    this.testSuccessful = false;
   }
 
   public testConnection() {
-    console.log('testing connection');
-    this.testSuccessful = this.ftpUploadService.testConnection(this.host, this.port, this.username, this.password);
-    this.testResultVisible = true;
+    this.ftpUploadService.testConnection(this.host, this.port, this.username, this.password);
   }
 
   public onNext() {
