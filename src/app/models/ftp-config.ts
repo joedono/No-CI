@@ -1,7 +1,7 @@
 export class FtpConfig {
-  Host: string;
-  Port: number;
-  Username: string;
-  Password: string;
-  IsStaging: boolean;
+  public Host: string;
+  public Port: number;
+  public Username: string;
+  public Password: string;
+  public IsStaging: boolean;
 }

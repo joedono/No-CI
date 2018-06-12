@@ -11,6 +11,7 @@ import { FtpConfigComponent } from './ftp-config/ftp-config.component';
 import { UploadComponent } from './upload/upload.component';
 
 import { GitRepoService } from './services/git-repo.service';
+import { FtpUploadService } from './services/ftp-upload.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { GitRepoService } from './services/git-repo.service';
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [ GitRepoService ],
+  providers: [ GitRepoService, FtpUploadService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

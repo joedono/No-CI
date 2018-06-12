@@ -1,9 +1,9 @@
 export class CommitFile {
-  public status: string;
-  public fileName: string;
+  public Status: string;
+  public FileName: string;
 
   constructor(status: string, fileName: string) {
-    this.status = status;
-    this.fileName = fileName;
+    this.Status = status;
+    this.FileName = fileName;
   }
 }

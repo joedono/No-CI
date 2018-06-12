@@ -14,7 +14,7 @@
   <div class="col">
     <select class="custom-select" [(ngModel)]="selectedFiles" multiple>
       <option *ngFor="let file of files" [ngValue]="file">
-        {{ file.status }} - {{ file.fileName }}
+        {{ file.Status }} - {{ file.FileName }}
       </option>
     </select>
   </div>

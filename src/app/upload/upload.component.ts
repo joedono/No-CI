@@ -13,8 +13,8 @@ import { GitRepoService } from '../services/git-repo.service';
 })
 export class UploadComponent implements OnInit {
 
-  private selectedFiles: CommitFile[];
-  private ftpConfig: FtpConfig;
+  public selectedFiles: CommitFile[];
+  public ftpConfig: FtpConfig;
 
   constructor(
     private gitRepoService: GitRepoService,

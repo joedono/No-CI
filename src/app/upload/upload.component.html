@@ -3,6 +3,29 @@
     <h1>Upload</h1>
   </div>
 </div>
+<div class="row">
+  <div class="col">
+    <h2 class="text-center">Files</h2>
+    <ul class="list-group file-list">
+      <li *ngFor="let selectedFile of selectedFiles" class="list-group-item">
+        {{selectFile.Status}} - {{selectFile.FileName}}
+      </li>
+    </ul>
+  </div>
+  <div class="col">
+    <h2 class="text-center">FTP Settings</h2>
+    <label>Host</label> {{ftpConfig.Host}}<br>
+    <label>Port</label> {{ftpConfig.Port}}<br>
+    <label>Username</label> {{ftpConfig.Username}}<br>
+    <label>Password</label> **********<br>
+    <label>IsStaging</label> {{ftpConfig.IsStaging}}
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    Log
+  </div>
+</div>
 <div class="row fixed-bottom nav-buttons">
   <div class="col text-left">
     <a href="#/ftp-config" class="btn btn-danger">Back</a>
