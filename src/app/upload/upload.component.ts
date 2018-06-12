@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CommitFile } from '../models/commit-file';
+import { FtpConfig } from '../models/ftp-config';
+
+import { FtpUploadService } from '../services/ftp-upload.service';
+import { GitRepoService } from '../services/git-repo.service';
+
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -7,9 +13,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadComponent implements OnInit {
 
-  constructor() { }
+  private selectedFiles: CommitFile[];
+  private ftpConfig: FtpConfig;
+
+  constructor(
+    private gitRepoService: GitRepoService,
+    private ftpUploadService: FtpUploadService
+  ) { }
 
   ngOnInit() {
+    this.selectedFiles = this.gitRepoService.getSelectedFiles();
+    this.ftpConfig = this.ftpUploadService.getConnection();
   }
 
 }

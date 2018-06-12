@@ -25,6 +25,10 @@ export class FtpUploadService {
     };
   }
 
+  public getConnection() {
+    return FtpConfigStore;
+  }
+
   public testConnection(host: string, port: number, username: string, password: string): void {
     var client = new ftp();
     client.on('ready', () => {
