@@ -57,7 +57,11 @@ export class FtpUploadService {
     });
   }
 
-  public upload(files: CommitFile[], ftpConfig: FtpConfig) {
+  public upload(rootPath: string, files: CommitFile[], ftpConfig: FtpConfig) {
+    console.log(rootPath);
+    console.log(files);
+    console.log(ftpConfig);
+
     // TODO
   }
 }

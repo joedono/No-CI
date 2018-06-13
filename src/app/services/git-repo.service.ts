@@ -4,6 +4,7 @@ import * as gitlog from 'gitlog';
 import { Commit } from '../models/commit';
 import { CommitFile } from '../models/commit-file';
 
+var RepoPath: string;
 var CommitStore: Commit[];
 var CommitFileStore: CommitFile[];
 
@@ -32,6 +33,7 @@ export class GitRepoService {
       if(error) {
         alert(error);
       } else {
+        RepoPath = repoPath;
         CommitStore = commits;
       }
     });
@@ -47,5 +49,9 @@ export class GitRepoService {
 
   public getSelectedFiles(): CommitFile[] {
     return CommitFileStore;
+  }
+
+  public getRepoPath(): string {
+    return RepoPath;
   }
 }

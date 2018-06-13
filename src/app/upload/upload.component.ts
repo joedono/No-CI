@@ -15,6 +15,7 @@ export class UploadComponent implements OnInit {
 
   public selectedFiles: CommitFile[];
   public ftpConfig: FtpConfig;
+  public rootPath: string;
 
   constructor(
     private gitRepoService: GitRepoService,
@@ -22,12 +23,13 @@ export class UploadComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.rootPath = this.gitRepoService.getRepoPath();
     this.selectedFiles = this.gitRepoService.getSelectedFiles();
     this.ftpConfig = this.ftpUploadService.getConnection();
   }
 
   public upload() {
-    this.ftpUploadService.upload(this.selectedFiles, this.ftpConfig);
+    this.ftpUploadService.upload(this.rootPath, this.selectedFiles, this.ftpConfig);
   }
 
 }
