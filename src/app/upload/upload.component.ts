@@ -26,4 +26,8 @@ export class UploadComponent implements OnInit {
     this.ftpConfig = this.ftpUploadService.getConnection();
   }
 
+  public upload() {
+    this.ftpUploadService.upload(this.selectedFiles, this.ftpConfig);
+  }
+
 }

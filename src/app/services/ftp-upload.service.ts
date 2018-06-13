@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as ftp from 'ftp';
 
+import { CommitFile } from '../models/commit-file';
 import { FtpConfig } from '../models/ftp-config';
 
 var FtpConfigStore: FtpConfig;
@@ -54,5 +55,9 @@ export class FtpUploadService {
       secure: true,
       secureOptions: { rejectUnauthorized: false }
     });
+  }
+
+  public upload(files: CommitFile[], ftpConfig: FtpConfig) {
+    // TODO
   }
 }
