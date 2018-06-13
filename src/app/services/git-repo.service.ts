@@ -43,7 +43,6 @@ export class GitRepoService {
 
   public setSelectedFiles(selectedFiles: CommitFile[]): void {
     CommitFileStore = selectedFiles;
-    console.log(CommitFileStore);
   }
 
   public getSelectedFiles(): CommitFile[] {

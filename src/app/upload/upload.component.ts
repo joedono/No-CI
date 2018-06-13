@@ -24,8 +24,6 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
     this.selectedFiles = this.gitRepoService.getSelectedFiles();
     this.ftpConfig = this.ftpUploadService.getConnection();
-
-    console.log(this.selectedFiles);
   }
 
 }
