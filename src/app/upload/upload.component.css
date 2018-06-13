@@ -4,6 +4,7 @@
 }
 
 .log-dump {
-  height: 100%;
+  height: 300px;
   border: 1px solid black;
+  overflow-y: scroll;
 }
