@@ -20,6 +20,11 @@ export class FtpConfigComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.host = 'ftp.animeboston.com';
+    this.port = 21;
+    this.username = 'joe.zusi@animeboston.com';
+    this.password = '';
+    this.isStaging = true;
   }
 
   public testConnection() {

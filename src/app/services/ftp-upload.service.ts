@@ -31,8 +31,10 @@ export class FtpUploadService {
   }
 
   public testConnection(host: string, port: number, username: string, password: string): void {
+    console.log("Testing Connection");
     var client = new ftp();
     client.on('ready', () => {
+      console.log("Successful connection. Attempting list");
       client.list((err, list) => {
         if (err) alert(err);
 
@@ -46,6 +48,12 @@ export class FtpUploadService {
     client.on('error', (err) => {
       alert(err);
     });
+
+    console.log("Connecting to FTP");
+    console.log(host);
+    console.log(port);
+    console.log(username);
+    console.log(password);
 
     client.connect({
       host: host,
@@ -62,6 +70,32 @@ export class FtpUploadService {
     console.log(files);
     console.log(ftpConfig);
 
-    // TODO
+    var client = new ftp();
+
+    client.on('ready', () => {
+      // TODO
+
+      client.list((err, list) => {
+        if (err) alert(err);
+
+        console.dir(list);
+        client.end();
+
+        alert("Connection Successful");
+      });
+    });
+
+    client.on('error', (err) => {
+      alert(err);
+    });
+
+    client.connect({
+      host: ftpConfig.Host,
+      port: ftpConfig.Port,
+      user: ftpConfig.Username,
+      password: ftpConfig.Password,
+      secure: true,
+      secureOptions: { rejectUnauthorized: false }
+    });
   }
 }
