@@ -16,6 +16,7 @@ export class UploadComponent implements OnInit {
   public selectedFiles: CommitFile[];
   public ftpConfig: FtpConfig;
   public rootPath: string;
+  public logs: string[];
 
   constructor(
     private gitRepoService: GitRepoService,
@@ -26,6 +27,8 @@ export class UploadComponent implements OnInit {
     this.rootPath = this.gitRepoService.getRepoPath();
     this.selectedFiles = this.gitRepoService.getSelectedFiles();
     this.ftpConfig = this.ftpUploadService.getConnection();
+
+    this.logs = [];
   }
 
   public upload() {

@@ -7,4 +7,9 @@
   height: 300px;
   border: 1px solid black;
   overflow-y: scroll;
+  padding: 0 5px;
+}
+
+.log-dump span {
+  display: block;
 }
