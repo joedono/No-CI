@@ -12,11 +12,12 @@ import { GitRepoService } from '../services/git-repo.service';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
+  public logs: string[];
+  public logger: EventEmitter<string>;
 
   public selectedFiles: CommitFile[];
   public ftpConfig: FtpConfig;
   public rootPath: string;
-  public logs: string[];
 
   constructor(
     private gitRepoService: GitRepoService,
@@ -29,15 +30,17 @@ export class UploadComponent implements OnInit {
     this.ftpConfig = this.ftpUploadService.getConnection();
 
     this.logs = [];
+    this.logger = new EventEmitter<string>();
+    this.logger.subscribe((res) => {
+      console.log(res);
+      let newLogs = this.logs.slice(0);
+      newLogs.push(res);
+      this.logs = newLogs;
+    });
   }
 
   public upload() {
-    var logger = new EventEmitter<string>();
-    logger.subscribe((res) => {
-      this.logs.push(res);
-    });
-
-    this.ftpUploadService.upload(this.rootPath, this.selectedFiles, this.ftpConfig, logger);
+    this.ftpUploadService.upload(this.rootPath, this.selectedFiles, this.ftpConfig, this.logger);
   }
 
 }

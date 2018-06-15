@@ -70,8 +70,8 @@ export class FtpUploadService {
 
       files.forEach((commitFile) => {
         if(commitFile.Status === 'A' || commitFile.Status === 'M') {
-          logger.emit(rootPath + commitFile.FileName);
-          logger.emit(ftpRootFolder + commitFile.FileName);
+          logger.emit('Uploading: ' + rootPath + commitFile.FileName);
+          logger.emit('To: ' + ftpRootFolder + commitFile.FileName);
 
           client.put(rootPath + commitFile.FileName, ftpRootFolder + commitFile.FileName, (err) => {
             if(err) {
