@@ -1,15 +1,4 @@
 .file-list {
-  height: 250px;
+  height: 550px;
   overflow-y: scroll;
-}
-
-.log-dump {
-  height: 300px;
-  border: 1px solid black;
-  overflow-y: scroll;
-  padding: 0 5px;
-}
-
-.log-dump span {
-  display: block;
 }
