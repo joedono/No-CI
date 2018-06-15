@@ -21,7 +21,10 @@ export class GitRepoService {
       'authorName',
       'committerName',
       'subject'
-    ]
+    ],
+    execOptions: {
+      maxBuffer: 1000 * 1024
+    }
   };
 
   constructor() { }

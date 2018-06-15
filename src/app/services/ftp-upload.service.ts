@@ -62,15 +62,23 @@ export class FtpUploadService {
     var ftpRootFolder = ftpConfig.IsStaging ? StagingFolder : ProductionFolder;
     var client = new ftp();
 
-    console.log(rootPath);
-    console.log(files);
-    console.log(ftpConfig);
+    console.log('Repo Selected: ' + rootPath);
+    console.log('Files Queued: ' + files.length);
 
     client.on('ready', () => {
+      console.log('Connected to FTP Server');
+
       files.forEach((commitFile) => {
         if(commitFile.Status === 'A' || commitFile.Status === 'M') {
+          console.log(rootPath + commitFile.FileName);
+          console.log(ftpRootFolder + commitFile.FileName);
+
           client.put(rootPath + commitFile.FileName, ftpRootFolder + commitFile.FileName, (err) => {
-            alert(err);
+            if(err) {
+              console.error(err);
+            } else {
+              console.log('Upload successful: ' + commitFile.FileName);
+            }
           });
         }
       });
@@ -79,7 +87,7 @@ export class FtpUploadService {
     });
 
     client.on('error', (err) => {
-      alert(err);
+      console.error(err);
     });
 
     client.connect({
