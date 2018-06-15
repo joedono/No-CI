@@ -21,6 +21,14 @@
     <strong>Is Staging:</strong> {{ftpConfig.IsStaging}}
   </div>
 </div>
+<div class="row">
+  <div class="col">
+    <h4>Log</h4>
+    <div class="log-dump" #logDump [scrollTop]="logDump.scrollHeight">
+      <span *ngFor="let log of logs">{{log}}</span>
+    </div>
+  </div>
+</div>
 <div class="row fixed-bottom nav-buttons">
   <div class="col text-left">
     <a href="#/ftp-config" class="btn btn-danger">Back</a>
