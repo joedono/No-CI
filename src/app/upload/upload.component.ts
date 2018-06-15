@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 
 import { CommitFile } from '../models/commit-file';
 import { FtpConfig } from '../models/ftp-config';
@@ -32,7 +32,12 @@ export class UploadComponent implements OnInit {
   }
 
   public upload() {
-    this.ftpUploadService.upload(this.rootPath, this.selectedFiles, this.ftpConfig);
+    var logger = new EventEmitter<string>();
+    logger.subscribe((res) => {
+      this.logs.push(res);
+    });
+
+    this.ftpUploadService.upload(this.rootPath, this.selectedFiles, this.ftpConfig, logger);
   }
 
 }

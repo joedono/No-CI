@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import * as ftp from 'ftp';
 
 import { CommitFile } from '../models/commit-file';
@@ -34,7 +34,7 @@ export class FtpUploadService {
     var client = new ftp();
     client.on('ready', () => {
       client.list((err, list) => {
-        if (err) alert(err);
+        if (err) console.error(err);
 
         console.dir(list);
         client.end();
@@ -44,7 +44,7 @@ export class FtpUploadService {
     });
 
     client.on('error', (err) => {
-      alert(err);
+      console.error(err);
     });
 
     client.connect({
@@ -57,27 +57,27 @@ export class FtpUploadService {
     });
   }
 
-  public upload(rootPath: string, files: CommitFile[], ftpConfig: FtpConfig) {
+  public upload(rootPath: string, files: CommitFile[], ftpConfig: FtpConfig, logger: EventEmitter<string>) {
     rootPath = rootPath.replace(/\\/gi, "/") + "/";
     var ftpRootFolder = ftpConfig.IsStaging ? StagingFolder : ProductionFolder;
     var client = new ftp();
 
-    console.log('Repo Selected: ' + rootPath);
-    console.log('Files Queued: ' + files.length);
+    logger.emit('Repo Selected: ' + rootPath);
+    logger.emit('Files Queued: ' + files.length);
 
     client.on('ready', () => {
-      console.log('Connected to FTP Server');
+      logger.emit('Connected to FTP Server');
 
       files.forEach((commitFile) => {
         if(commitFile.Status === 'A' || commitFile.Status === 'M') {
-          console.log(rootPath + commitFile.FileName);
-          console.log(ftpRootFolder + commitFile.FileName);
+          logger.emit(rootPath + commitFile.FileName);
+          logger.emit(ftpRootFolder + commitFile.FileName);
 
           client.put(rootPath + commitFile.FileName, ftpRootFolder + commitFile.FileName, (err) => {
             if(err) {
-              console.error(err);
+              logger.emit('ERROR: ' + err);
             } else {
-              console.log('Upload successful: ' + commitFile.FileName);
+              logger.emit('Upload successful: ' + commitFile.FileName);
             }
           });
         }
@@ -87,7 +87,7 @@ export class FtpUploadService {
     });
 
     client.on('error', (err) => {
-      console.error(err);
+      logger.emit('ERROR: ' + err);
     });
 
     client.connect({
