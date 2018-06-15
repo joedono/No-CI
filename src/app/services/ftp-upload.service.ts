@@ -58,23 +58,24 @@ export class FtpUploadService {
   }
 
   public upload(rootPath: string, files: CommitFile[], ftpConfig: FtpConfig) {
+    rootPath = rootPath.replace(/\\/gi, "/") + "/";
+    var ftpRootFolder = ftpConfig.IsStaging ? StagingFolder : ProductionFolder;
+    var client = new ftp();
+
     console.log(rootPath);
     console.log(files);
     console.log(ftpConfig);
 
-    var client = new ftp();
-
     client.on('ready', () => {
-      // TODO
-
-      client.list((err, list) => {
-        if (err) alert(err);
-
-        console.dir(list);
-        client.end();
-
-        alert("Connection Successful");
+      files.forEach((commitFile) => {
+        if(commitFile.Status === 'A' || commitFile.Status === 'M') {
+          client.put(rootPath + commitFile.FileName, ftpRootFolder + commitFile.FileName, (err) => {
+            alert(err);
+          });
+        }
       });
+
+      client.end();
     });
 
     client.on('error', (err) => {
