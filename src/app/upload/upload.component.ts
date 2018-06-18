@@ -39,6 +39,11 @@ export class UploadComponent implements OnInit {
     });
   }
 
+  public refreshLog() {
+    let newLogs = this.logs.slice(0);
+    this.logs = newLogs;
+  }
+
   public upload() {
     this.ftpUploadService.upload(this.rootPath, this.selectedFiles, this.ftpConfig, this.logger);
   }
