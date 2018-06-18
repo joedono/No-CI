@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import * as electron from 'electron';
-import { remote } from 'electron';
-const dialog = remote.dialog;
-
 import { FtpUploadService } from '../services/ftp-upload.service';
 
 @Component({
@@ -29,14 +25,6 @@ export class FtpConfigComponent implements OnInit {
     this.username = 'jzusi@animeboston.com';
     this.password = '';
     this.isStaging = true;
-  }
-
-  public saveConnection() {
-    alert('saving');
-  }
-
-  public loadConnection() {
-    dialog.showOpenDialog({});
   }
 
   public testConnection() {
